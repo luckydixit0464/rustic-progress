@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RUSTIC PROGRESS - Digital Learning Platform</title>
+<link rel="stylesheet" href="rustic1.css" />
+</head>
+<body>
+
+<!-- Login / Signup Wrapper -->
+<div id="authWrapper" class="auth-wrapper">
+  <div id="loginForm">
+    <h2 class="auth-header">Login to Rustic Progress</h2>
+    <form id="login" onsubmit="return handleLogin(event)">
+      <label for="loginIdentity">Name or Email</label>
+      <input type="text" id="loginIdentity" name="loginIdentity" required />
+      <label for="loginPassword">Password</label>
+      <input type="password" id="loginPassword" name="loginPassword" required />
+      <div id="loginError" class="error-message"></div>
+      <button type="submit" class="btn-primary">Login</button>
+    </form>
+    <div class="toggle-link" onclick="toggleForms()">Don't have an account? Signup here</div>
+  </div>
+  <div id="signupForm" style="display:none;">
+    <h2 class="auth-header">Signup for Rustic Progress</h2>
+    <form id="signup" onsubmit="return handleSignup(event)">
+      <label for="signupName">Name</label>
+      <input type="text" id="signupName" name="signupName" required />
+      <label for="signupEmail">Email</label>
+      <input type="email" id="signupEmail" name="signupEmail" required />
+      <label for="signupPassword">Password</label>
+      <input type="password" id="signupPassword" name="signupPassword" required />
+      <label for="signupConfirmPassword">Confirm Password</label>
+      <input type="password" id="signupConfirmPassword" name="signupConfirmPassword" required />
+      <div id="signupError" class="error-message"></div>
+      <button type="submit" class="btn-primary">Signup</button>
+    </form>
+    <div class="toggle-link" onclick="toggleForms()">Already have an account? Login here</div>
+  </div>
+</div>
+
+<!-- Main Platform -->
+<div id="mainPlatform" style="display:none;">
+  <nav>
+    <div class="logo">RUSTIC PROGRESS</div>
+    <ul>
+      <li><a href="#home" onclick="showSection('home')">Home</a></li>
+      <li><a href="#courses" onclick="showSection('courses')">Courses</a></li>
+      <li><a href="#quiz" onclick="showSection('quiz')">Quiz</a></li>
+      <li><a href="#rewards" onclick="showSection('rewards')">Rewards</a></li>
+      <li><a href="#about" onclick="showSection('about')">About Us</a></li>
+      <li><a href="#contact" onclick="showSection('contact')">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <section id="home" class="content-section">
+      <div class="banner" role="banner">
+        Downloadable offline lectures in multiple languages to support students facing illiteracy and accessibility challenges.
+        <div class="progress-container" aria-label="User Progress Bar">
+          <div class="progress-bar" id="progressBar"></div>
+          <div class="progress-text" id="progressText"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="courses" class="content-section" style="display:none;">
+      <div class="class-selection" aria-label="Class Selection Tabs">
+        <div class="tabs" role="tablist" id="classTabs">
+          <!-- Tabs inserted by JS -->
+        </div>
+      </div>
+      <div id="courseContent" class="course-content" tabindex="0" aria-live="polite">
+        Please select a class to view course content.
+      </div>
+    </section>
+
+    <section id="tutorials" class="sections" style="display:none;">
+      <div class="section-card" id="englishTutorials">
+        <h3>English Speaking & Understanding</h3>
+        <div class="section-content">
+          Interactive lessons and videos to build confidence in English language skills.
+        </div>
+      </div>
+      <div class="section-card" id="gadgetTutorials">
+        <h3>Gadget Tutorials</h3>
+        <div class="section-content">
+          Step-by-step tutorials for using mobile phones, tablets, and basic gadgets.
+        </div>
+      </div>
+      <div class="section-card" id="confidenceVideos">
+        <h3>Confidence Building Videos</h3>
+        <div class="section-content">
+          Motivational videos to encourage and boost self-esteem among students.
+        </div>
+      </div>
+      <div class="section-card" id="activities">
+        <h3>Activities</h3>
+        <div class="section-content">
+          Fun and educational activities designed to motivate learning and retention.
+        </div>
+      </div>
+    </section>
+
+    <section id="quiz" class="content-section" style="display:none;">
+      <div class="quiz-section" aria-live="polite">
+        <h2>Quiz - Test Your Learning</h2>
+        <form id="quizForm" onsubmit="return submitQuiz(event)">
+          <div class="quiz-question" 
+            <li><label><input type="radio" name="q1" value="New Delhi" required>New Delhi</label></li>
+            <li><label><input type="radio" name="q1" value="Mumbai"> Mumbai</label></li>
+            <li><label><input type="radio" name="q1" value="Kolkata"> Kolkata</label></li>
+            <li><label><input type="radio" name="q1" value="Chennai"> Chennai</label></li>
+          </ul>
+          <div class="quiz-submit">
+            <button type="submit" class="btn-primary">Submit Quiz</button>
+          </div>
+        </form>
+        <div id="quizResult" aria-live="assertive" style="margin-top:15px; font-weight:bold;"></div>
+      </div>
+    </section>
+
+    <section id="rewards" class="content-section" style="display:none;">
+      <div class="rewards-section" aria-live="polite">
+        <h2>Rewards - Your Progress</h2>
+        <p>Complete quizzes and courses to earn points and unlock rewards!</p>
+        <div id="rewardsList">
+          <ul>
+            <li>10 points - Bronze Badge</li>
+            <li>30 points - Silver Badge</li>
+            <li>50 points - Gold Badge</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="content-section" style="display:none;">
+      <div class="container">
+        <h2>About Us</h2>
+        <p>
+          RUSTIC PROGRESS is dedicated to empowering rural students in Nabha with digital learning resources that are accessible and engaging.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact" class="content-section" style="display:none;">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <p>Email: support@rusticprogress.org</p>
+        <p>Phone: +91 6394867018</p>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script src="script1.js"></script>
+</body>
+</html>
